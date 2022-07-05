@@ -2,40 +2,39 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class SearchEvent extends StatelessWidget {
+  const SearchEvent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Home',
-      home: const HomePage(title: "Home"),
+      home: const SearchEventPage(title: "Home"),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class SearchEventPage extends StatefulWidget {
+  const SearchEventPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SearchEventPage> createState() => _SearchEventPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SearchEventPageState extends State<SearchEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(children: [EdgeRoundContainer("6/27"),EdgeRoundContainer("6/27")],),
           UserCard(
               "ダンスの振り付け一緒に考えませんか？",
               "users/account1.jpg",
               [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
               Eventcard("ダンス好き集まれ！", "users/account1.jpg")),
-              UserCard(
+          UserCard(
               "ダンスミュージックについて語りたい！",
               "users/account2.jpg",
               [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
@@ -46,19 +45,28 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+Widget SearchTags() {
+  return (Container(
+      child: Row(
+    children: [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/27")],
+  )));
+}
+
 Widget EdgeRoundContainer(String text) {
   return (Container(
-      padding:EdgeInsets.all(5),
+      padding: EdgeInsets.all(5),
       margin: EdgeInsets.all(3),
-      child: Text(text,style: TextStyle(color: Colors.white),),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.white),
+      ),
       decoration: BoxDecoration(
-          color: Colors.black.withAlpha(70), borderRadius: BorderRadius.circular(100))));
+          color: Colors.black.withAlpha(70),
+          borderRadius: BorderRadius.circular(100))));
 }
 
 Widget Eventcard(String eventname, String eventimagepass) {
-  return (
-    Container(
-    
+  return (Container(
     child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
@@ -70,8 +78,10 @@ Widget Eventcard(String eventname, String eventimagepass) {
               height: 50,
             ),
             Container(
-              padding:EdgeInsets.all(4),
-              child: Center(child: Text(eventname,style: TextStyle(color: Colors.white))),
+              padding: EdgeInsets.all(4),
+              child: Center(
+                  child:
+                      Text(eventname, style: TextStyle(color: Colors.white))),
               height: 50,
               color: Colors.black.withAlpha(70),
             )
@@ -82,18 +92,20 @@ Widget Eventcard(String eventname, String eventimagepass) {
 
 Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
     Widget eventcard) {
-  return (
-    
-    Container(
-      margin:EdgeInsets.all(10),
-     width: 420,
-     decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20.0),boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(0.0, 1.0),
-                    blurRadius: 6.0,
-                  ),
-                ],),
+  return (Container(
+      margin: EdgeInsets.all(10),
+      width: 420,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0),
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Container(

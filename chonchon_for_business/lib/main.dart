@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'view/home.dart';
+import 'package:chonchon_for_business/view/BottomNavigationBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const MyBottomNavigationBar(),
     );
   }
 }

@@ -29,20 +29,58 @@ class _SearchEventPageState extends State<SearchEventPage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SearchBox(),
           UserCard(
               "ダンスの振り付け一緒に考えませんか？",
               "users/account1.jpg",
-              [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+              [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
               Eventcard("ダンス好き集まれ！", "users/account1.jpg")),
           UserCard(
               "ダンスミュージックについて語りたい！",
               "users/account2.jpg",
-              [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+              [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
               Eventcard("ダンス好き集まれ！", "users/account2.jpg"))
         ],
       )),
     );
   }
+}
+
+Widget SearchBox() {
+  return (Container(
+      width: 400,
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0),
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
+    child: ClipRRect(
+    borderRadius: BorderRadius.circular(20.0),
+    child: Container(
+      child: Row(children: [
+        Container(child:  Icon(
+          Icons.search,
+          color: Colors.blueAccent,
+        ),
+        padding: EdgeInsets.all(7),),
+       
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          width: 200,
+          child: TextField(
+            decoration: InputDecoration(hintText: "Search"),
+          ),
+        )
+      ]),
+    ),
+  )));
 }
 
 Widget SearchTags() {
@@ -54,7 +92,8 @@ Widget SearchTags() {
 
 Widget EdgeRoundContainer(String text) {
   return (Container(
-      padding: EdgeInsets.all(5),
+      height: 22,
+      padding: EdgeInsets.all(2),
       margin: EdgeInsets.all(3),
       child: Text(
         text,
@@ -94,6 +133,7 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
     Widget eventcard) {
   return (Container(
       margin: EdgeInsets.all(10),
+      height: 200,
       width: 420,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -128,16 +168,30 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
                     width: 150,
                   ),
                   Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      child: const Text('参加する！'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
+                      margin: EdgeInsets.all(5),
+                      child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(3),
+                              child: ElevatedButton(
+                                child: const Text('参加する！'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue,
+                                  shape: const StadiumBorder(),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                            Container(
+                                child: IconButton(
+                              icon: Icon(Icons.favorite),
+                              onPressed: () {},
+                            )),
+                          ],
+                        ),
+                      ))
                 ],
               ),
             )

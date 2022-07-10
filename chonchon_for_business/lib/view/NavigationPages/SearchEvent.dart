@@ -30,6 +30,7 @@ class _SearchEventPageState extends State<SearchEventPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SearchBox(),
+          SearchTags(),
           UserCard(
               "ダンスの振り付け一緒に考えませんか？",
               "users/account1.jpg",
@@ -85,8 +86,9 @@ Widget SearchBox() {
 
 Widget SearchTags() {
   return (Container(
+      padding: EdgeInsets.all(5),
       child: Row(
-    children: [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/27")],
+    children: [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
   )));
 }
 

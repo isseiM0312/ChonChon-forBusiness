@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:chonchon_for_business/view/NavigationPages/Home.dart';
 import 'package:chonchon_for_business/view/NavigationPages/SearchEvent.dart';
 
 
@@ -26,7 +27,7 @@ class MyBotttomNavigationBarPage extends StatefulWidget {
 
 class _MyBotttomNavigationBarPageState extends State<MyBotttomNavigationBarPage> {
   static const _screens = [
-    SearchEvent(),
+    Home(),
     SearchEvent(),
     SearchEvent(),
     SearchEvent(),

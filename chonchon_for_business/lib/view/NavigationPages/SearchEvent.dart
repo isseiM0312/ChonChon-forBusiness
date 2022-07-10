@@ -1,6 +1,9 @@
 import 'dart:html';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class SearchEvent extends StatelessWidget {
   const SearchEvent({Key? key}) : super(key: key);
@@ -26,24 +29,67 @@ class _SearchEventPageState extends State<SearchEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          UserCard(
-              "ダンスの振り付け一緒に考えませんか？",
-              "users/account1.jpg",
-              [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-              Eventcard("ダンス好き集まれ！", "users/account1.jpg")),
-          UserCard(
-              "ダンスミュージックについて語りたい！",
-              "users/account2.jpg",
-              [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-              Eventcard("ダンス好き集まれ！", "users/account2.jpg"))
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //SearchBar(),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                UserCard(
+                    "ダンスの振り付け一緒に考えませんか？",
+                    "users/account1.jpg",
+                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+                    Eventcard("ダンス好き集まれ！", "users/account1.jpg"),
+                    ProfileContainer("たく", "経済", "1年")),
+                UserCard(
+                    "ダンスミュージックについて語りたい！",
+                    "users/account2.jpg",
+                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+                    Eventcard("ダンスミュージック", "users/account2.jpg"),
+                    ProfileContainer("やまだ", "理工", "2年")),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+
+// Widget SearchBar() {
+//   return (Container(
+//     margin: EdgeInsets.all(20),
+//     decoration: BoxDecoration(
+//       color: Colors.white,
+//       border: Border.all(color: Colors.white),
+//       borderRadius: BorderRadius.circular(20.0),
+//       boxShadow: [
+//         BoxShadow(
+//           color: Colors.grey,
+//           offset: Offset(0.0, 1.0),
+//           blurRadius: 2.0,
+//         ),
+//       ],
+//     ),
+//     child: Container(
+//       padding: EdgeInsets.all(13.0),
+//       height: 45,
+//       width: 350,
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         children: [
+//           Icon(CupertinoIcons.search, color: Colors.blue),
+//         ],
+//       ),
+//     ),
+//   ));
+// }
 
 Widget SearchTags() {
   return (Container(
@@ -90,8 +136,46 @@ Widget Eventcard(String eventname, String eventimagepass) {
   ));
 }
 
+Widget ProfileContainer(String name, String faculty, String grade) {
+  return (Container(
+      padding: EdgeInsets.all(10),
+      height: 200,
+      width: 200,
+      child: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            margin: EdgeInsets.all(5),
+            child: Text(
+              name,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500),
+            ),
+          ),
+          Container(
+              width: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    faculty,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  Text(
+                    grade,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                ],
+              )),
+        ],
+      ))));
+}
+
 Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
-    Widget eventcard) {
+    Widget eventcard, Widget profileContainer) {
   return (Container(
       margin: EdgeInsets.all(10),
       width: 420,
@@ -111,8 +195,13 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
         child: Container(
             child: Row(
           children: [
-            SizedBox(
-                child: Image.asset(userimagepass), height: 200, width: 200),
+            Stack(
+              children: [
+                SizedBox(
+                    child: Image.asset(userimagepass), height: 200, width: 200),
+                profileContainer,
+              ],
+            ),
             Container(
               margin: EdgeInsets.all(10),
               child: Column(
@@ -129,13 +218,20 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
                   ),
                   Container(
                     margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      child: const Text('参加する！'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          child: const Text('参加する！'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                            onPressed: () {}, icon: Icon(CupertinoIcons.heart)),
+                      ],
                     ),
                   )
                 ],

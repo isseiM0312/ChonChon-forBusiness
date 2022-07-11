@@ -45,13 +45,13 @@ class _SearchEventPageState extends State<SearchEventPage> {
                     "ダンスの振り付け一緒に考えませんか？",
                     "users/account1.jpg",
                     [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    Eventcard("ダンス好き集まれ！", "users/account1.jpg"),
+                    EventCard("ダンス好き集まれ！", "users/account1.jpg"),
                     ProfileContainer("たく", "経済", "1年")),
                 UserCard(
                     "ダンスミュージックについて語りたい！",
                     "users/account2.jpg",
                     [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    Eventcard("ダンスミュージック", "users/account2.jpg"),
+                    EventCard("ダンスミュージック", "users/account2.jpg"),
                     ProfileContainer("やまだ", "理工", "2年")),
               ],
             ),
@@ -61,35 +61,6 @@ class _SearchEventPageState extends State<SearchEventPage> {
     );
   }
 }
-
-// Widget SearchBar() {
-//   return (Container(
-//     margin: EdgeInsets.all(20),
-//     decoration: BoxDecoration(
-//       color: Colors.white,
-//       border: Border.all(color: Colors.white),
-//       borderRadius: BorderRadius.circular(20.0),
-//       boxShadow: [
-//         BoxShadow(
-//           color: Colors.grey,
-//           offset: Offset(0.0, 1.0),
-//           blurRadius: 2.0,
-//         ),
-//       ],
-//     ),
-//     child: Container(
-//       padding: EdgeInsets.all(13.0),
-//       height: 45,
-//       width: 350,
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         children: [
-//           Icon(CupertinoIcons.search, color: Colors.blue),
-//         ],
-//       ),
-//     ),
-//   ));
-// }
 
 Widget SearchTags() {
   return (Container(
@@ -111,7 +82,7 @@ Widget EdgeRoundContainer(String text) {
           borderRadius: BorderRadius.circular(100))));
 }
 
-Widget Eventcard(String eventname, String eventimagepass) {
+Widget EventCard(String eventname, String eventimagepass) {
   return (Container(
     child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
@@ -175,7 +146,7 @@ Widget ProfileContainer(String name, String faculty, String grade) {
 }
 
 Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
-    Widget eventcard, Widget profileContainer) {
+    Widget eventcard, Widget profilecontainer) {
   return (Container(
       margin: EdgeInsets.all(10),
       width: 420,
@@ -199,7 +170,7 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
               children: [
                 SizedBox(
                     child: Image.asset(userimagepass), height: 200, width: 200),
-                profileContainer,
+                profilecontainer,
               ],
             ),
             Container(

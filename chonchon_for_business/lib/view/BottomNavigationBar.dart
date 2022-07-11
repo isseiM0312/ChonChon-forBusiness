@@ -55,7 +55,7 @@ class _MyBotttomNavigationBarPageState extends State<MyBotttomNavigationBarPage>
             BottomNavigationBarItem(
                 icon: Icon(Icons.add_circle_outline), label: '新規イベント'),
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'チャット'),
-            BottomNavigationBarItem(icon: SizedBox(height: 40,width: 40,child:Image.asset('users/people.png')),label: 'プロフィール')
+            BottomNavigationBarItem(icon: SizedBox(height: 40,width: 40,child:Image.asset('images/users/people.png')),label: 'プロフィール')
           ],
           type: BottomNavigationBarType.fixed,
         ));

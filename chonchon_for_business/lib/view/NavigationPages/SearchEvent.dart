@@ -34,9 +34,7 @@ class _SearchEventPageState extends State<SearchEventPage> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //SearchBar(),
-              ],
+              children: [],
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,

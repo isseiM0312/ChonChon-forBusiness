@@ -29,6 +29,7 @@ class _SearchEventPageState extends State<SearchEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -56,20 +57,60 @@ class _SearchEventPageState extends State<SearchEventPage> {
           ],
         ),
       ),
+
     );
   }
 }
 
+Widget SearchBox() {
+  return (Container(
+      width: 400,
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0),
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
+    child: ClipRRect(
+    borderRadius: BorderRadius.circular(20.0),
+    child: Container(
+      child: Row(children: [
+        Container(child:  Icon(
+          Icons.search,
+          color: Colors.blueAccent,
+        ),
+        padding: EdgeInsets.all(7),),
+       
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          width: 200,
+          child: TextField(
+            decoration: InputDecoration(hintText: "Search"),
+          ),
+        )
+      ]),
+    ),
+  )));
+}
+
 Widget SearchTags() {
   return (Container(
+      padding: EdgeInsets.all(5),
       child: Row(
-    children: [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/27")],
+    children: [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
   )));
 }
 
 Widget EdgeRoundContainer(String text) {
   return (Container(
-      padding: EdgeInsets.all(5),
+      height: 22,
+      padding: EdgeInsets.all(2),
       margin: EdgeInsets.all(3),
       child: Text(
         text,
@@ -147,6 +188,7 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
     Widget eventcard, Widget profilecontainer) {
   return (Container(
       margin: EdgeInsets.all(10),
+      height: 200,
       width: 420,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -186,6 +228,7 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
                     width: 150,
                   ),
                   Container(
+
                     margin: EdgeInsets.all(5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,7 +246,7 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
                       ],
                     ),
                   )
-                ],
+         ],
               ),
             )
           ],

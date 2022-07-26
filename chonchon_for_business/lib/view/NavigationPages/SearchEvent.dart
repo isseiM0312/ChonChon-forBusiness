@@ -1,6 +1,9 @@
 import 'dart:html';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class SearchEvent extends StatelessWidget {
   const SearchEvent({Key? key}) : super(key: key);
@@ -26,23 +29,35 @@ class _SearchEventPageState extends State<SearchEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SearchBox(),
-          SearchTags(),
-          UserCard(
-              "ダンスの振り付け一緒に考えませんか？",
-              "users/account1.jpg",
-              [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
-              Eventcard("ダンス好き集まれ！", "users/account1.jpg")),
-          UserCard(
-              "ダンスミュージックについて語りたい！",
-              "users/account2.jpg",
-              [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
-              Eventcard("ダンス好き集まれ！", "users/account2.jpg"))
-        ],
-      )),
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                UserCard(
+                    "ダンスの振り付け一緒に考えませんか？",
+                    "users/account1.jpg",
+                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+                    EventCard("ダンス好き集まれ！", "users/account1.jpg"),
+                    ProfileContainer("たく", "経済", "1年")),
+                UserCard(
+                    "ダンスミュージックについて語りたい！",
+                    "users/account2.jpg",
+                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
+                    EventCard("ダンスミュージック", "users/account2.jpg"),
+                    ProfileContainer("やまだ", "理工", "2年")),
+              ],
+            ),
+          ],
+        ),
+      ),
+
     );
   }
 }
@@ -106,7 +121,7 @@ Widget EdgeRoundContainer(String text) {
           borderRadius: BorderRadius.circular(100))));
 }
 
-Widget Eventcard(String eventname, String eventimagepass) {
+Widget EventCard(String eventname, String eventimagepass) {
   return (Container(
     child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
@@ -131,8 +146,46 @@ Widget Eventcard(String eventname, String eventimagepass) {
   ));
 }
 
+Widget ProfileContainer(String name, String faculty, String grade) {
+  return (Container(
+      padding: EdgeInsets.all(10),
+      height: 200,
+      width: 200,
+      child: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            margin: EdgeInsets.all(5),
+            child: Text(
+              name,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500),
+            ),
+          ),
+          Container(
+              width: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    faculty,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  Text(
+                    grade,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                ],
+              )),
+        ],
+      ))));
+}
+
 Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
-    Widget eventcard) {
+    Widget eventcard, Widget profilecontainer) {
   return (Container(
       margin: EdgeInsets.all(10),
       height: 200,
@@ -153,8 +206,13 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
         child: Container(
             child: Row(
           children: [
-            SizedBox(
-                child: Image.asset(userimagepass), height: 200, width: 200),
+            Stack(
+              children: [
+                SizedBox(
+                    child: Image.asset(userimagepass), height: 200, width: 200),
+                profilecontainer,
+              ],
+            ),
             Container(
               margin: EdgeInsets.all(10),
               child: Column(
@@ -170,31 +228,25 @@ Widget UserCard(String message, String userimagepass, List<Widget> datewigets,
                     width: 150,
                   ),
                   Container(
-                      margin: EdgeInsets.all(5),
-                      child: Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              child: ElevatedButton(
-                                child: const Text('参加する！'),
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue,
-                                  shape: const StadiumBorder(),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                            Container(
-                                child: IconButton(
-                              icon: Icon(Icons.favorite),
-                              onPressed: () {},
-                            )),
-                          ],
+
+                    margin: EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          child: const Text('参加する！'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {},
                         ),
-                      ))
-                ],
+                        IconButton(
+                            onPressed: () {}, icon: Icon(CupertinoIcons.heart)),
+                      ],
+                    ),
+                  )
+         ],
               ),
             )
           ],

@@ -42,15 +42,15 @@ class _SearchEventPageState extends State<SearchEventPage> {
               children: [
                 UserCard(
                     "ダンスの振り付け一緒に考えませんか？",
-                    "users/account1.jpg",
+                    "images/users/account1.jpg",
                     [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    EventCard("ダンス好き集まれ！", "users/account1.jpg"),
+                    EventCard("ダンス好き集まれ！", "images/users/account1.jpg"),
                     ProfileContainer("たく", "経済", "1年")),
                 UserCard(
                     "ダンスミュージックについて語りたい！",
-                    "users/account2.jpg",
+                    "images/users/account2.jpg",
                     [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    EventCard("ダンスミュージック", "users/account2.jpg"),
+                    EventCard("ダンスミュージック", "images/users/account2.jpg"),
                     ProfileContainer("やまだ", "理工", "2年")),
               ],
             ),

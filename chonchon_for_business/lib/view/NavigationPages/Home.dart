@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xffb94630) ,
+      backgroundColor: Color(0xffb94630),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -35,24 +35,12 @@ class _HomePageState extends State<HomePage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                UserCard(
-                    "ダンスの振り付け一緒に考えませんか？",
-                    ["images/users/account1.jpg"],
-                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    
-                    ProfileContainer("たく", "経済", "1年")),
-                UserCard(
-                    "ダンスミュージックについて語りたい！",
-                    ["images/users/account2.jpg"],
-                    [EdgeRoundContainer("6/27"), EdgeRoundContainer("6/28")],
-                    
-                    ProfileContainer("やまだ", "理工", "2年")),
+                
               ],
             ),
           ],
         ),
       ),
-
     );
   }
 }
@@ -72,108 +60,70 @@ Widget SearchBox() {
           ),
         ],
       ),
-    child: ClipRRect(
-    borderRadius: BorderRadius.circular(20.0),
-    child: Container(
-      child: Row(children: [
-        Container(child:  Icon(
-          Icons.search,
-          color: Colors.blueAccent,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: Container(
+          child: Row(children: [
+            Container(
+              child: Icon(
+                Icons.search,
+                color: Colors.blueAccent,
+              ),
+              padding: EdgeInsets.all(7),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              width: 200,
+              child: TextField(
+                decoration: InputDecoration(hintText: "Search"),
+              ),
+            )
+          ]),
         ),
-        padding: EdgeInsets.all(7),),
-       
-        Container(
-          margin: EdgeInsets.only(left: 20),
-          width: 200,
-          child: TextField(
-            decoration: InputDecoration(hintText: "Search"),
-          ),
-        )
-      ]),
-    ),
-  )));
+      )));
 }
 
-Widget SearchTags() {
+Widget EdgeRoundContainer(String text,double height,double witdh, Color color) {
   return (Container(
-      padding: EdgeInsets.all(5),
-      child: Row(
-    children: [EdgeRoundContainer("6/27(月)"), EdgeRoundContainer("6/28(火)")],
-  )));
-}
-
-Widget EdgeRoundContainer(String text) {
-  return (Container(
-      height: 22,
+      height: height,
+      width: witdh,
       padding: EdgeInsets.all(2),
       margin: EdgeInsets.all(3),
       child: Text(
         text,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: color),
       ),
       decoration: BoxDecoration(
           color: Colors.black.withAlpha(70),
           borderRadius: BorderRadius.circular(100))));
 }
 
-
-Widget ProfileContainer(String name, String faculty, String grade) {
-  return (Container(
-      padding: EdgeInsets.all(10),
-      height: 200,
-      width: 200,
-      child: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            margin: EdgeInsets.all(5),
-            child: Text(
-              name,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          Container(
-              width: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    faculty,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
-                  Text(
-                    grade,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
-                ],
-              )),
-        ],
-      ))));
-}
-
-Widget UserCard(String message, List<String> userimagepass, List<Widget> datewigets,
-    Widget profilecontainer) {
+Widget UserCard(
+  String title,
+  List<Widget> tags,
+  String date,
+  Widget catecory,
+  List<String> userimagepass
+) {
   return (Container(
       margin: EdgeInsets.all(10),
-      height: 200,
-      width: 420,
+      height: 50,
+      width: 500,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xffb94630),
         borderRadius: BorderRadius.circular(20.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(0.0, 1.0),
-            blurRadius: 6.0,
-          ),
-        ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
-        child: Container(),
-      )));
+      child:Row(children: [
+        Column(children: [
+          Container(child: Text(title),),
+          Container(child: Row(children: tags),),
+          Container(child: Text(date),),
+          Container(child: catecory)
+        ],),
+        Column(children: [
+          Container(child: Text("あと13分で募集終了!"),),
+          Container(height: 25,),
+          Container(child: Row(children: [Text("メンバー:2人"),],),)
+        ],)
+      ],)));
 }

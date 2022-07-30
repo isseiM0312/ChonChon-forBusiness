@@ -34,30 +34,15 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
             backgroundColor: Color(0xffb94630),
             appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(150),
+                preferredSize: const Size.fromHeight(135),
                 child: AppBar(
-                  backgroundColor: Colors.black,
-                  title: const Text(
-                    '"Chon Chon"',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
-                  flexibleSpace: searchBox(),
-                  bottom: const TabBar(
-                    unselectedLabelStyle: TextStyle(),
-                    labelStyle: TextStyle(),
-                    tabs: <Widget>[
-                      Tab(
-                        text: "新着",
-                      ),
-                      Tab(
-                        text: "おすすめ",
-                      ),
-                      Tab(
-                        text: "フォロー",
-                      ),
-                    ],
-                  ),
-                )),
+                    backgroundColor: Colors.black,
+                    title: const Text(
+                      '"Chon Chon"',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    flexibleSpace: searchBox(),
+                    bottom: tabBar())),
             body: TabBarView(
               children: <Widget>[
                 Center(
@@ -68,13 +53,13 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           eventCard("ビブリオバトル", ["ビブリオバトル", "定期開催"],
-                              DateTime(2022, 7, 29, 13, 59), "読書", 2),
+                              DateTime(2022, 7, 30, 15, 59), "読書", 2, ""),
                           eventCard("ビジネスに役立つ読書", ["経済", "ビジネス", "金融"],
-                              DateTime(2022, 7, 29, 14, 50), "読書", 3),
+                              DateTime(2022, 7, 30, 16, 50), "読書", 3, ""),
                           eventCard("ひまわり図書館", ["図書館"],
-                              DateTime(2022, 7, 29, 13, 58), "読書", 1),
+                              DateTime(2022, 7, 30, 15, 50), "読書", 1, ""),
                           eventCard("人文系の本を読もう！", ["初学者歓迎", "メディアセンター"],
-                              DateTime(2022, 7, 29, 14, 30), "読書", 5),
+                              DateTime(2022, 7, 30, 16, 30), "読書", 5, ""),
                         ],
                       ),
                     ],
@@ -85,6 +70,30 @@ class _HomePageState extends State<HomePage> {
               ],
             )));
   }
+}
+
+PreferredSizeWidget tabBar() {
+  return (const TabBar(
+    labelStyle: TextStyle(),
+    unselectedLabelStyle: TextStyle(),
+    labelColor: Color(0xffb94630),
+    unselectedLabelColor: Colors.white,
+    indicatorPadding: EdgeInsets.only(
+      left: 10,
+      right: 10,
+    ),
+    tabs: <Widget>[
+      Tab(
+        text: "フォロー",
+      ),
+      Tab(
+        text: "おすすめ",
+      ),
+      Tab(
+        text: "新着",
+      ),
+    ],
+  ));
 }
 
 Widget searchBox() {
@@ -115,6 +124,7 @@ Widget eventCard(
   DateTime eventDate,
   String category,
   int currentParticipantsNum,
+  String ownerImagePass,
 ) {
   return (Container(
     margin: const EdgeInsets.all(6),
@@ -132,6 +142,7 @@ Widget eventCard(
           tags,
           eventDate,
           category,
+          ownerImagePass,
         ),
         dynamicEventInfo(
           eventDate,
@@ -147,43 +158,62 @@ Widget staticEventInfo(
   List<String> tags,
   DateTime eventDate,
   String category,
+  String ownerImagePass,
 ) {
   return (Container(
-    padding: const EdgeInsets.only(left: 15),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              eventTitle,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
+      padding: const EdgeInsets.only(left: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ownerImage(ownerImagePass),
+          const SizedBox(width: 5),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    eventTitle,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:
+                        tags.map((String e) => tagContainer("#" + e)).toList(),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    DateToString.monthToString(eventDate) +
+                        "/" +
+                        DateToString.dayToString(eventDate) +
+                        "（" +
+                        DateToString.weekdayToString(eventDate) +
+                        "）",
+                    style: const TextStyle(color: Colors.black, fontSize: 14),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 3),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: tags.map((String e) => tagContainer("#" + e)).toList(),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              DateToString.monthToString(eventDate) +
-                  "/" +
-                  DateToString.dayToString(eventDate) +
-                  "（" +
-                  DateToString.weekdayToString(eventDate) +
-                  "）",
-              style: const TextStyle(color: Colors.black, fontSize: 14),
-            ),
-          ],
-        ),
-        categoryContainer(category),
-      ],
+              categoryContainer(category),
+            ],
+          ),
+        ],
+      )));
+}
+
+Widget ownerImage(String ownerImagePass) {
+  return (Container(
+    width: 50,
+    height: 50,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      shape: BoxShape.circle,
     ),
   ));
 }

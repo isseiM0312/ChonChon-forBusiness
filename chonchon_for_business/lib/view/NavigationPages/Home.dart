@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: HomePage(title: "Home"),
+      home: const HomePage(title: "Home"),
     );
   }
 }
@@ -49,24 +49,48 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          eventCard("ビブリオバトル", ["ビブリオバトル", "定期開催"],
-                              DateTime(2022, 7, 30, 15, 59), "読書", 2, ""),
-                          eventCard("ビジネスに役立つ読書", ["経済", "ビジネス", "金融"],
-                              DateTime(2022, 7, 30, 16, 50), "読書", 3, ""),
-                          eventCard("ひまわり図書館", ["図書館"],
-                              DateTime(2022, 7, 30, 15, 50), "読書", 1, ""),
-                          eventCard("人文系の本を読もう！", ["初学者歓迎", "メディアセンター"],
-                              DateTime(2022, 7, 30, 16, 30), "読書", 5, ""),
-                        ],
-                      ),
+                      eventCard("ビブリオバトル", ["ビブリオバトル", "定期開催"],
+                          DateTime(2022, 7, 30, 16, 00), "読書", 2, ""),
+                      eventCard("ビジネスに役立つ読書", ["経済", "ビジネス", "金融"],
+                          DateTime(2022, 7, 30, 16, 50), "読書", 3, ""),
+                      eventCard("ひまわり図書館", ["図書館"],
+                          DateTime(2022, 7, 30, 15, 50), "読書", 1, ""),
+                      eventCard("人文系の本を読もう！", ["初学者歓迎", "メディアセンター"],
+                          DateTime(2022, 7, 30, 16, 30), "読書", 5, ""),
                     ],
                   ),
                 ),
-                Center(),
-                Center(),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      eventCard("18世紀欧州の哲学", ["哲学", "専門家歓迎"],
+                          DateTime(2022, 7, 31, 17, 50), "読書", 3, ""),
+                      eventCard("自作PCの会", ["自作PC", "大学生", "実践"],
+                          DateTime(2022, 7, 30, 17, 50), "DIY", 2, ""),
+                    ],
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      eventCard("効率の良い家事", ["家事", "主夫"],
+                          DateTime(2022, 7, 31, 16, 00), "家事", 1, ""),
+                      eventCard("レポートやりましょう！", ["何でもOK", "学生歓迎", "仕事"],
+                          DateTime(2022, 7, 30, 16, 50), "勉強", 2, ""),
+                      eventCard(
+                          "ライブの感想会",
+                          [
+                            "YOASOBI",
+                          ],
+                          DateTime(2022, 8, 1, 16, 50),
+                          "音楽",
+                          2,
+                          ""),
+                    ],
+                  ),
+                ),
               ],
             )));
   }
@@ -134,21 +158,25 @@ Widget eventCard(
       color: Colors.white.withOpacity(0.55),
       borderRadius: BorderRadius.circular(20),
     ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        staticEventInfo(
-          eventTitle,
-          tags,
-          eventDate,
-          category,
-          ownerImagePass,
-        ),
-        dynamicEventInfo(
-          eventDate,
-          currentParticipantsNum,
-        ),
-      ],
+    child: InkWell(
+      onTap: () => {},
+      borderRadius: BorderRadius.circular(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          staticEventInfo(
+            eventTitle,
+            tags,
+            eventDate,
+            category,
+            ownerImagePass,
+          ),
+          dynamicEventInfo(
+            eventDate,
+            currentParticipantsNum,
+          ),
+        ],
+      ),
     ),
   ));
 }
@@ -208,12 +236,16 @@ Widget staticEventInfo(
 }
 
 Widget ownerImage(String ownerImagePass) {
-  return (Container(
-    width: 50,
-    height: 50,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      shape: BoxShape.circle,
+  return (InkWell(
+    onTap: () => {},
+    borderRadius: BorderRadius.circular(25),
+    child: Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.7),
+        shape: BoxShape.circle,
+      ),
     ),
   ));
 }
@@ -225,19 +257,24 @@ Widget tagContainer(String tag) {
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         color: Colors.white.withOpacity(0.8)),
-    child: Text(
-      tag,
-      style: const TextStyle(fontSize: 10),
+    child: InkWell(
+      onTap: () => {},
+      child: Text(
+        tag,
+        style: const TextStyle(fontSize: 10),
+      ),
     ),
   ));
 }
 
 Widget categoryContainer(String category) {
   return (Container(
-      margin: const EdgeInsets.only(bottom: 2),
-      padding: const EdgeInsets.only(left: 5, right: 5),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(7), color: Color(0xffb94630)),
+    margin: const EdgeInsets.only(bottom: 2),
+    padding: const EdgeInsets.only(left: 5, right: 5),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(7), color: Color(0xffb94630)),
+    child: InkWell(
+      onTap: () => {},
       child: Row(
         children: [
           const Icon(
@@ -250,7 +287,9 @@ Widget categoryContainer(String category) {
             style: const TextStyle(color: Colors.white, fontSize: 12),
           ),
         ],
-      )));
+      ),
+    ),
+  ));
 }
 
 Widget dynamicEventInfo(DateTime eventDate, int currentParticipantsNum) {

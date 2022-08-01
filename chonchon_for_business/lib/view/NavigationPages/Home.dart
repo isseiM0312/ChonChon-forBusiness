@@ -3,20 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../Common/DateToString.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Home',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      home: const HomePage(title: "Home"),
-    );
-  }
-}
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -79,15 +65,8 @@ class _HomePageState extends State<HomePage> {
                           DateTime(2022, 7, 31, 16, 00), "家事", 1, ""),
                       eventCard("レポートやりましょう！", ["何でもOK", "学生歓迎", "仕事"],
                           DateTime(2022, 7, 30, 16, 50), "勉強", 2, ""),
-                      eventCard(
-                          "ライブの感想会",
-                          [
-                            "YOASOBI",
-                          ],
-                          DateTime(2022, 8, 1, 16, 50),
-                          "音楽",
-                          2,
-                          ""),
+                      eventCard("ライブの感想会", ["YOASOBI"],
+                          DateTime(2022, 8, 1, 16, 50), "音楽", 2, ""),
                     ],
                   ),
                 ),

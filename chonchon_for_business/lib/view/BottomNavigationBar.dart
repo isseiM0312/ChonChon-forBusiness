@@ -2,34 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chonchon_for_business/view/NavigationPages/Home.dart';
 
-class MyBottomNavigationBar extends StatelessWidget {
-  const MyBottomNavigationBar({Key? key}) : super(key: key);
+class MyBottomNavigationBarPage extends StatefulWidget {
+  const MyBottomNavigationBarPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '',
-      theme: ThemeData(),
-      home: const MyBotttomNavigationBarPage(),
-    );
-  }
+  State<MyBottomNavigationBarPage> createState() =>
+      _MyBottomNavigationBarPageState();
 }
 
-class MyBotttomNavigationBarPage extends StatefulWidget {
-  const MyBotttomNavigationBarPage({Key? key}) : super(key: key);
-
-  @override
-  State<MyBotttomNavigationBarPage> createState() =>
-      _MyBotttomNavigationBarPageState();
-}
-
-class _MyBotttomNavigationBarPageState
-    extends State<MyBotttomNavigationBarPage> {
+class _MyBottomNavigationBarPageState
+    extends State<MyBottomNavigationBarPage> {
   static const _screens = [
-    Home(),
-    Home(),
-    Home(),
-    Home(),
+    HomePage(title: 'Home',),
+    HomePage(title: 'Home',),
+    HomePage(title: 'Home',),
+    HomePage(title: 'Home',),
   ];
 
   int _selectedIndex = 0;
@@ -50,25 +37,25 @@ class _MyBotttomNavigationBarPageState
               icon: Icon(
                 CupertinoIcons.home,
               ),
-              label: "",
+              label: "Home",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 CupertinoIcons.plus_square,
               ),
-              label: "",
+              label: "Create Events",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 CupertinoIcons.chat_bubble_text,
               ),
-              label: "",
+              label: "Talk",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 CupertinoIcons.person,
               ),
-              label: '',
+              label: 'Profile',
             )
           ],
           type: BottomNavigationBarType.fixed,
@@ -76,6 +63,10 @@ class _MyBotttomNavigationBarPageState
           selectedItemColor: const Color(0xffb94630),
           unselectedItemColor: Colors.white,
           currentIndex: _selectedIndex,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedFontSize: 0.0,
+          unselectedFontSize: 0.0,
           onTap: _onItemTapped,
         ));
   }

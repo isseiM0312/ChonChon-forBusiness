@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chonchon_for_business/view/BottomNavigationBar.dart';
+import 'package:chonchon_for_business/view/EventInfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => const MyBottomNavigationBarPage(),
+        '/': (BuildContext context) => const Material(
+              child: MyBottomNavigationBarPage(),
+            ),
       },
     );
   }

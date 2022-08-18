@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import 'package:chonchon_for_business/view/NavigationPages/Home.dart';
+import 'package:chonchon_for_business/view/NavigationPages/EventCreate.dart';
 
 PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
-class MyBottomNavigationBarPage extends StatelessWidget {
-  const MyBottomNavigationBarPage({Key? key}) : super(key: key);
+class BottomNavigationBarPage extends StatelessWidget {
+  const BottomNavigationBarPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class MyBottomNavigationBarPage extends StatelessWidget {
 List<Widget> _buildScreens() {
   return const [
     HomePage(title: 'Home'),
-    HomePage(title: 'Home'),
+    EventCreatePage(title: 'Event Create'),
     HomePage(title: 'Home'),
     HomePage(title: 'Home'),
   ];

@@ -27,7 +27,7 @@ Widget eventCard(
     child: InkWell(
       onTap: () => pushNewScreen(
         context,
-        screen: const MyEventInfoPage(),
+        screen: const EventInfoPage(),
         withNavBar: true,
       ),
       borderRadius: BorderRadius.circular(20),
@@ -123,7 +123,7 @@ Widget ownerImage(String ownerImagePass) {
 Widget tagContainer(String tag) {
   return (Container(
     margin: const EdgeInsets.only(right: 5),
-    padding: const EdgeInsets.only(left: 5, right: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         color: Colors.white.withOpacity(0.8)),
@@ -140,7 +140,7 @@ Widget tagContainer(String tag) {
 Widget categoryContainer(String category) {
   return (Container(
     margin: const EdgeInsets.only(bottom: 2),
-    padding: const EdgeInsets.only(left: 5, right: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7), color: Color(0xffb94630)),
     child: InkWell(

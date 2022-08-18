@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyEventInfoPage extends StatefulWidget {
-  const MyEventInfoPage({Key? key}) : super(key: key);
+class EventInfoPage extends StatefulWidget {
+  const EventInfoPage({Key? key}) : super(key: key);
 
   @override
-  State<MyEventInfoPage> createState() => _MyEventInfoPageState();
+  State<EventInfoPage> createState() => _EventInfoPageState();
 }
 
-class _MyEventInfoPageState extends State<MyEventInfoPage> {
+class _EventInfoPageState extends State<EventInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _MyEventInfoPageState extends State<MyEventInfoPage> {
             const SizedBox(height: 25),
             memberCard(5),
             Container(
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               height: 50,
               width: 250,
               decoration: BoxDecoration(

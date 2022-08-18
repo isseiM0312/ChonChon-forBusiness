@@ -75,6 +75,28 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+Widget searchBox() {
+  return (Container(
+      margin: const EdgeInsets.only(left: 30, top: 45, right: 30),
+      child: TextField(
+        cursorColor: Color(0xffb94630),
+        decoration: InputDecoration(
+          hintText: "検索",
+          fillColor: Colors.white,
+          filled: true,
+          isDense: true,
+          prefixIcon: const Icon(
+            CupertinoIcons.search,
+          ),
+          contentPadding: const EdgeInsets.all(0),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(32),
+          ),
+        ),
+      )));
+}
+
 PreferredSizeWidget tabBar() {
   return (const TabBar(
     labelStyle: TextStyle(),
@@ -97,26 +119,4 @@ PreferredSizeWidget tabBar() {
       ),
     ],
   ));
-}
-
-Widget searchBox() {
-  return (Container(
-      margin: const EdgeInsets.only(left: 30, top: 45, right: 30),
-      child: TextField(
-        cursorColor: Color(0xffb94630),
-        decoration: InputDecoration(
-          hintText: "検索",
-          fillColor: Colors.white,
-          filled: true,
-          isDense: true,
-          prefixIcon: const Icon(
-            CupertinoIcons.search,
-          ),
-          contentPadding: const EdgeInsets.all(0),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(32),
-          ),
-        ),
-      )));
 }

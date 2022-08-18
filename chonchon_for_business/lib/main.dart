@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => const Material(
-              child: MyBottomNavigationBarPage(),
+              child: BottomNavigationBarPage(),
             ),
       },
     );

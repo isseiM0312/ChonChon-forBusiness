@@ -4,6 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import 'package:chonchon_for_business/view/NavigationPages/Home.dart';
 import 'package:chonchon_for_business/view/NavigationPages/EventCreate.dart';
+import 'package:chonchon_for_business/view/NavigationPages/Profile.dart';
 
 PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
@@ -32,7 +33,7 @@ List<Widget> _buildScreens() {
     HomePage(title: 'Home'),
     EventCreatePage(title: 'Event Create'),
     HomePage(title: 'Home'),
-    HomePage(title: 'Home'),
+    ProfilePage(title: 'Profile'),
   ];
 }
 
